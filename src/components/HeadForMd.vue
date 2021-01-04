@@ -364,7 +364,10 @@ export default {
             });
             this.data = [];
             this.dataHistory = [];
-            for (let i = 0; i < resultData.length; i++) {
+            if(resultData[0].status == 0) {
+                this.$message.info('获取失败');
+            }
+            for (let i = 1; i < resultData.length; i++) {
                 if (resultData[i] != null && resultData[i].status == 1){
                     this.data.push(resultData[i]);
                     this.dataHistory.push({todo: resultData[i].todo, time: resultData[i].time, status:"未完成"});
