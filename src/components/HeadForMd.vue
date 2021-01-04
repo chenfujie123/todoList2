@@ -189,6 +189,8 @@ export default {
             if (resultData.status == 1) {
                 this.$message.info('添加成功');
                 this.getAllToDo();
+            } else {
+                this.$message.info('添加失败');
             }
         },
         //点击事项的完成时的点击响应程序
@@ -271,7 +273,7 @@ export default {
                 return;
             }
             var data = Qs.stringify({key: keyArray.toString()});
-            this.$http.post('/finish', data).then(function(res){
+            await this.$http.post('/finish', data).then(function(res){
                 if (res.data.status == 1) {
                     resultData = res.data;
                 }
